@@ -1,0 +1,39 @@
+# TapeSmith MCP Server — Databricks App Configuration
+# Deploy as a Databricks App exposing 8 MCP tools for AI Playground.
+#
+# Usage:
+#   databricks apps create tapesmith-mcp --app-yaml app.yaml
+#   databricks apps deploy tapesmith-mcp --source-code-path .
+#
+# ⚠️ UPDATE ALL placeholder values below before deploying.
+
+command:
+  - "uv"
+  - "run"
+  - "tapesmith-mcp-a"
+
+env:
+  - name: DATABRICKS_HOST
+    # Automatically injected by Databricks Apps — no value needed
+  - name: DATABRICKS_TOKEN
+    # Automatically injected by Databricks Apps — no value needed
+
+  # ─── REQUIRED: Update these for your environment ─────────────────
+  - name: DATABRICKS_SQL_WAREHOUSE_ID
+    value: "4b9b953939869799"          # e.g. "148ccb90800933a1"
+
+  - name: DATABRICKS_MODEL_NAME
+    value: "databricks-gpt-5-2"            # Foundation model endpoint name
+
+  - name: TAPESMITH_SCHEMA_NAME
+    value: "nagy_clean"                    # Default schema JSON filename (without .json)
+
+  - name: TAPESMITH_SCHEMA_PATH
+    value: "/Volumes/rahul_pathak/nl_example/schemafiletapesmith"        # e.g. "/Volumes/my_catalog/my_schema/schema_files"
+
+  - name: TAPESMITH_CATALOG
+    value: "rahul_pathak"                   # e.g. "my_catalog"
+
+  - name: TAPESMITH_DB_SCHEMA
+    value: "nl_example"                 # e.g. "tapesmith"
+
